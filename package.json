@@ -12,6 +12,7 @@
     "start:admin": "npm run start --workspace=apps/admin-mobile"
   },
   "devDependencies": {
+    "@types/react": "~18.2.79",
     "typescript": "^5.4.5"
   }
 }
