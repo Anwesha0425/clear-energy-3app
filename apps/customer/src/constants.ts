@@ -9,6 +9,6 @@ export const CUSTOMER_ID = 'c-001';
 
 /**
  * API base URL — points to the json-server mock backend.
- * In production: read from an environment variable via expo-constants.
+ * In production: read from an environment variable via EXPO_PUBLIC_API_URL.
  */
-export const API_BASE_URL = 'http://localhost:4000';
+export const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? 'http://10.0.2.2:4000';

@@ -27,27 +27,7 @@ export function useCustomerOrders() {
     staleTime: 30_000, // 30s — orders don't change that frequently
     retry: (failureCount, error) => {
       // Don't retry on abort (component unmounted) or 4xx client errors
-      if (
-        error != null &&
-        typeof error === 'object' &&
-        'kind' in error &&
-        (error as { kind: string }).kind === 'abort'
-      ) {
-        return false;
-      }
-      if (
-        error != null &&
-        typeof error === 'object' &&
-        'kind' in error &&
-        (error as { kind: string }).kind === 'http' &&
-        'status' in error &&
-        typeof (error as { status: unknown }).status === 'number' &&
-        (error as { status: number }).status < 500
-      ) {
-        return false;
-      }
-      return failureCount < 2; // retry up to 2 times for network/5xx errors
-    },
+    retry: shouldRetry,
     // TODO [idempotency stub]: when a "Reorder" or "Cancel" action is added,
     // generate the key at the point of user action:
     //   const idempotencyKey = crypto.randomUUID(); // once per logical action

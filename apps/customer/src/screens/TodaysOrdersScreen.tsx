@@ -27,7 +27,7 @@ const FILTER_TABS: { key: FilterTab; label: string }[] = [
   { key: 'all', label: 'All' },
   { key: 'active', label: 'Active' },
   { key: 'delivered', label: 'Delivered' },
-  { key: 'cancelled', label: 'Cancelled' },
+  { key: 'cancelled', label: 'Returns' },
 ];
 
 function filterOrders(orders: OrderRow[], tab: FilterTab): OrderRow[] {
