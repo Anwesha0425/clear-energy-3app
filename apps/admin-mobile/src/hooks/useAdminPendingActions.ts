@@ -19,16 +19,7 @@ export function useAdminPendingActions() {
     queryFn: ({ signal }) => getAdminPendingActions(apiClient, ADMIN_ID, signal),
     staleTime: 10_000, // admin queues are time-sensitive
     refetchInterval: 30_000, // auto-refresh every 30s
-    retry: (failureCount, error) => {
-      if (error != null && typeof error === 'object' && 'kind' in error) {
-        const kind = (error as { kind: string }).kind;
-        if (kind === 'abort') return false;
-        if (kind === 'http') {
-          const status = (error as { status?: number }).status;
-          if (status != null && status < 500) return false;
-        }
-      }
-      return failureCount < 2;
-    },
+    refetchIntervalInBackground: false, // Don't poll network when app is backgrounded
+    retry: shouldRetry,
   });
 }

@@ -45,7 +45,6 @@ const CATEGORY_CONFIG: Record<string, CategoryConfig> = {
     color: '#D97706',
     bgColor: '#FFFBEB',
     emoji: '📦',
-    slaLabel: 'SLA 24h',
   },
   mi_full: {
     label: 'MI Full',
@@ -217,6 +216,11 @@ export function PendingActionsScreen() {
 
 function CategoryHeader({ section }: { section: SectionData }) {
   const { config, data, breachedCount } = section;
+  
+  // Compute SLA label dynamically from the first item's data (if available)
+  const slaMin = data[0]?.slaMinutes;
+  const computedSlaLabel = slaMin != null ? formatSla(slaMin) : '';
+
   return (
     <View style={[styles.categoryHeader, { backgroundColor: config.bgColor, borderColor: config.color + '40' }]}>
       <View style={[styles.categoryIcon, { backgroundColor: config.color + '22' }]}>
@@ -227,13 +231,20 @@ function CategoryHeader({ section }: { section: SectionData }) {
           {config.label}
         </Text>
         <Text style={styles.categoryMeta}>
-          {config.slaLabel}
-          {data.length > 0 ? ` · ${data.length} pending` : ''}
+          {computedSlaLabel}
+          {computedSlaLabel && data.length > 0 ? ' · ' : ''}
+          {data.length > 0 ? `${data.length} pending` : ''}
           {breachedCount > 0 ? ` · ⚠ ${breachedCount} breached` : ''}
         </Text>
       </View>
     </View>
   );
+}
+
+function formatSla(minutes: number): string {
+  if (minutes < 60) return `SLA ${minutes}m`;
+  const h = Math.floor(minutes / 60);
+  return `SLA ${h}h`;
 }
 
 function ScreenHeader({

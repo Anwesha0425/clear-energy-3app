@@ -18,16 +18,6 @@ export function useDriverTrip() {
     queryKey: ['driver-trip', DRIVER_ID],
     queryFn: ({ signal }) => getDriverTrip(apiClient, DRIVER_ID, signal),
     staleTime: 15_000, // driver data changes frequently — shorter stale window
-    retry: (failureCount, error) => {
-      if (error != null && typeof error === 'object' && 'kind' in error) {
-        const kind = (error as { kind: string }).kind;
-        if (kind === 'abort') return false;
-        if (kind === 'http') {
-          const status = (error as { status?: number }).status;
-          if (status != null && status < 500) return false;
-        }
-      }
-      return failureCount < 2;
-    },
+    retry: shouldRetry,
   });
 }
