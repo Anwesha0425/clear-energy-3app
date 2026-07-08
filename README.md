@@ -170,4 +170,4 @@ Not cut: shared types, mappers, API client error/abort/idempotency, unit test, R
 
 ---
 
-*Clear Energy — 3-App Take-Home · Built by [Your Name]*
+*Clear Energy — 3-App  · Built by Anwesha Rani Gouda*
