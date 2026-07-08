@@ -13,9 +13,9 @@ export type { Result } from './types/result';
 export { ApiError } from './types/api-errors';
 
 // ─── API ───────────────────────────────────────────────────────────────────
-export { createApiClient } from './api/client';
-export type { ApiClient, ApiClientConfig } from './api/client';
-export { getCustomerOrders, getDriverTrip, getAdminPendingActions } from './api/endpoints';
+export * from './api/client';
+export * from './api/endpoints';
+export * from './api/retry';
 
 // ─── Format ────────────────────────────────────────────────────────────────
 export { formatPaiseToINR } from './format/currency';

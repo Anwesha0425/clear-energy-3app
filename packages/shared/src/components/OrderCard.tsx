@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, AccessibilityInfo } from 'react-native';
+import { View, Text, TouchableOpacity, AccessibilityInfo, Alert } from 'react-native';
 import type { OrderRow, AdminPriority } from '../types/order';
 import { formatPaiseToINR } from '../format/currency';
 import { truncateAddress } from '../format/address';
@@ -113,14 +113,18 @@ function DriverBlock({ order }: { order: OrderRow }) {
         <Text style={styles.skuName}>
           {order.customerName ?? '—'}{order.sku ? ` · ${order.sku}` : ''}
         </Text>
-        <Text
-          style={styles.addressText}
-          numberOfLines={1}
-          ellipsizeMode="tail"
+        <TouchableOpacity
+          onLongPress={() => Alert.alert('Full Address', order.address ?? '')}
           accessibilityLabel={order.address ?? undefined}
         >
-          {displayAddress}
-        </Text>
+          <Text
+            style={styles.addressText}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {displayAddress}
+          </Text>
+        </TouchableOpacity>
       </View>
 
       {/* ETA badge */}
