@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin Mobile · Pending Actions · Clear Energy</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+  :root { --brand:#0F766E; --brand-dark:#0E5D56; }
+  body { background:#0f172a; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Arial,sans-serif; }
+  .chip { display:inline-flex; align-items:center; padding:2px 10px; border-radius:9999px; font-size:11px; font-weight:600; }
+  .phone-shell { width:390px; height:844px; background:#fff; border-radius:36px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,.4); margin:32px auto; }
+</style>
+</head>
+<body class="text-slate-900 p-6">
+  <div class="max-w-4xl mx-auto text-center text-white mb-4">
+    <h1 class="text-xl font-bold">Admin Mobile — "Pending Actions" Screen</h1>
+    <p class="text-xs opacity-60 mt-1">Take-home reference · render this as a React Native screen consuming <code>GET /pending-actions?adminId=a-201</code></p>
+  </div>
+
+  <div class="phone-shell">
+    <div class="h-full flex flex-col bg-slate-50">
+      <!-- Header -->
+      <div class="bg-gradient-to-br from-[var(--brand)] to-emerald-700 text-white px-5 pt-4 pb-5">
+        <div class="flex items-center gap-3 mb-3">
+          <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          <div class="font-bold flex items-center gap-1"><i data-lucide="zap" class="w-4 h-4 text-amber-300"></i> Pending Actions</div>
+          <i data-lucide="filter" class="w-5 h-5 ml-auto"></i>
+        </div>
+        <div class="flex items-end gap-2">
+          <div class="text-3xl font-bold">7</div>
+          <div class="text-xs opacity-80 mb-1">items across 4 categories</div>
+        </div>
+        <div class="text-[11px] opacity-80 mt-0.5">Sorted by SLA-breach risk · Banjara Hills</div>
+      </div>
+
+      <!-- Action cards -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-3 pb-8">
+
+        <!-- Cash -->
+        <div class="bg-white rounded-2xl border border-emerald-200 overflow-hidden">
+          <div class="flex items-center gap-3 px-4 py-3 bg-emerald-50 border-b border-emerald-100">
+            <div class="w-9 h-9 rounded-lg bg-emerald-100 flex items-center justify-center"><i data-lucide="banknote" class="w-4 h-4 text-emerald-600"></i></div>
+            <div class="flex-1">
+              <div class="font-bold text-slate-900 text-sm">Cash</div>
+              <div class="text-[10px] text-slate-500">SLA 60m · 2 pending</div>
+            </div>
+          </div>
+          <div class="divide-y divide-slate-100">
+            <div class="flex items-center gap-3 px-4 py-2.5">
+              <div class="flex-1 min-w-0">
+                <div class="font-mono text-xs font-bold text-emerald-600">CT-1882</div>
+                <div class="text-xs text-slate-700 truncate">Suresh R · ₹4,872 (partial)</div>
+                <div class="text-[10px] text-slate-400">30m</div>
+              </div>
+              <button class="bg-[var(--brand)] text-white text-[10px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap"><i data-lucide="check" class="w-3 h-3 inline"></i> Approve</button>
+            </div>
+            <div class="flex items-center gap-3 px-4 py-2.5">
+              <div class="flex-1 min-w-0">
+                <div class="font-mono text-xs font-bold text-emerald-600">CT-1881</div>
+                <div class="text-xs text-slate-700 truncate">Rakesh M · ₹6,210</div>
+                <div class="text-[10px] text-slate-400">45m</div>
+              </div>
+              <button class="bg-[var(--brand)] text-white text-[10px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap"><i data-lucide="check" class="w-3 h-3 inline"></i> Approve</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MI Empty -->
+        <div class="bg-white rounded-2xl border border-amber-200 overflow-hidden">
+          <div class="flex items-center gap-3 px-4 py-3 bg-amber-50 border-b border-amber-100">
+            <div class="w-9 h-9 rounded-lg bg-amber-100 flex items-center justify-center"><i data-lucide="package-check" class="w-4 h-4 text-amber-600"></i></div>
+            <div class="flex-1">
+              <div class="font-bold text-slate-900 text-sm">MI Empty</div>
+              <div class="text-[10px] text-slate-500">SLA 24h · 2 pending · 1 breached</div>
+            </div>
+          </div>
+          <div class="divide-y divide-slate-100">
+            <div class="flex items-center gap-3 px-4 py-2.5">
+              <div class="flex-1 min-w-0">
+                <div class="font-mono text-xs font-bold text-amber-600">MI-E-2245</div>
+                <div class="text-xs text-slate-700 truncate">Rakesh M · 14.2 kg × 5, 19 kg × 2</div>
+                <div class="text-[10px] text-slate-400">30m</div>
+              </div>
+              <button class="bg-[var(--brand)] text-white text-[10px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap"><i data-lucide="check" class="w-3 h-3 inline"></i> Approve</button>
+            </div>
+            <div class="flex items-center gap-3 px-4 py-2.5">
+              <div class="flex-1 min-w-0">
+                <div class="font-mono text-xs font-bold text-amber-600">MI-E-2241</div>
+                <div class="text-xs text-slate-700 truncate">Naveen K · 14.2 kg × 8</div>
+                <div class="text-[10px] text-rose-600 font-bold">3h ⚠</div>
+              </div>
+              <button class="bg-[var(--brand)] text-white text-[10px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap"><i data-lucide="check" class="w-3 h-3 inline"></i> Approve</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unassigned -->
+        <div class="bg-white rounded-2xl border border-violet-200 overflow-hidden">
+          <div class="flex items-center gap-3 px-4 py-3 bg-violet-50 border-b border-violet-100">
+            <div class="w-9 h-9 rounded-lg bg-violet-100 flex items-center justify-center"><i data-lucide="user-plus" class="w-4 h-4 text-violet-600"></i></div>
+            <div class="flex-1">
+              <div class="font-bold text-slate-900 text-sm">Unassigned orders</div>
+              <div class="text-[10px] text-slate-500">SLA 60m · 1 pending</div>
+            </div>
+          </div>
+          <div class="px-4 py-2.5 flex items-center gap-3">
+            <div class="flex-1 min-w-0">
+              <div class="font-mono text-xs font-bold text-violet-600">SO-9481</div>
+              <div class="text-xs text-slate-700 truncate">Priya R · 5 kg × 2 · today 1–4</div>
+              <div class="text-[10px] text-slate-400">12m</div>
+            </div>
+            <button class="bg-violet-100 text-violet-700 text-[10px] font-bold px-2.5 py-1.5 rounded-lg whitespace-nowrap">Assign →</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-2xl mx-auto text-white text-xs opacity-60 mt-4 text-center">
+    Group by <code>category</code>. Per-card colour = category colour (cash=emerald, mi_empty=amber, unassigned=violet, kyc=rose, prior_delivery=sky). Show ⚠ + rose text when <code>ageMinutes &gt; slaMinutes</code>.
+  </div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

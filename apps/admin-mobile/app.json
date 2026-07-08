@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Clear Energy — Admin",
+    "slug": "clear-energy-admin",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "clearenergy-admin",
+    "userInterfaceStyle": "light",
+    "splash": { "backgroundColor": "#0F766E" },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.clearenergy.admin"
+    },
+    "android": {
+      "adaptiveIcon": { "backgroundColor": "#0F766E" },
+      "package": "com.clearenergy.admin"
+    }
+  }
+}

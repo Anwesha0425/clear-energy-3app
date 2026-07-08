@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Clear Energy — Driver",
+    "slug": "clear-energy-driver",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "clearenergy-driver",
+    "userInterfaceStyle": "light",
+    "splash": { "backgroundColor": "#0F766E" },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.clearenergy.driver"
+    },
+    "android": {
+      "adaptiveIcon": { "backgroundColor": "#0F766E" },
+      "package": "com.clearenergy.driver"
+    }
+  }
+}

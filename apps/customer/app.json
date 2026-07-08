@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Clear Energy — My Orders",
+    "slug": "clear-energy-customer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "clearenergy-customer",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#0F766E"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.clearenergy.customer"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#0F766E"
+      },
+      "package": "com.clearenergy.customer"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

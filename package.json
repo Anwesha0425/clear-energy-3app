@@ -1,0 +1,17 @@
+{
+  "name": "clear-energy-takehome",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "test": "npm run test --workspace=packages/shared",
+    "start:customer": "npm run start --workspace=apps/customer",
+    "start:driver": "npm run start --workspace=apps/driver",
+    "start:admin": "npm run start --workspace=apps/admin-mobile"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

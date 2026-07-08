@@ -1,0 +1,20 @@
+{
+  "name": "@clear-energy/shared",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.73.0"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "typescript": "^5.4.5"
+  }
+}

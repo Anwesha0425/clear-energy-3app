@@ -1,0 +1,130 @@
+openapi: 3.1.0
+info:
+  title: Clear Energy — 3-App Take-Home API (slice)
+  version: 1.0.0
+  description: |
+    Three read-only endpoints consumed by the Customer App, Driver App, and Admin Mobile App
+    for the take-home task. All money values are integer paise. All timestamps ISO 8601 UTC.
+
+servers:
+  - url: http://localhost:4000
+    description: Mock backend (json-server)
+
+paths:
+  /orders:
+    get:
+      summary: List a customer's recent orders
+      description: Used by the Customer App "Today's Orders" screen.
+      parameters:
+        - in: query
+          name: customerId
+          required: true
+          schema: { type: string, example: c-001 }
+        - in: query
+          name: limit
+          schema: { type: integer, minimum: 1, maximum: 50, default: 20 }
+      responses:
+        '200':
+          description: List of orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Order' }
+
+  /trips:
+    get:
+      summary: Get a driver's trip for today (with stops)
+      description: Used by the Driver App "Today's Trip" screen.
+      parameters:
+        - in: query
+          name: driverId
+          required: true
+          schema: { type: string, example: d-101 }
+      responses:
+        '200':
+          description: A list of stops for the driver's trip today
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/TripStop' }
+
+  /pending-actions:
+    get:
+      summary: List items pending an admin's action
+      description: Used by the Admin Mobile "Pending Actions" inbox.
+      parameters:
+        - in: query
+          name: adminId
+          required: true
+          schema: { type: string, example: a-201 }
+      responses:
+        '200':
+          description: List of pending action items, sorted by SLA-breach risk
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/PendingAction' }
+
+components:
+  schemas:
+    Order:
+      type: object
+      required: [id, customerName, address, amountPaise, sku, status, placedAt]
+      properties:
+        id: { type: string, example: SO-9482 }
+        customerName: { type: string, example: Raj Kumar }
+        address: { type: string, example: "H-No 8-2-704, Banjara Hills, Hyderabad — 500034" }
+        amountPaise: { type: integer, example: 118000, description: "Amount in paise (₹1,180.00)" }
+        sku:
+          type: object
+          required: [code, name]
+          properties:
+            code: { type: string, example: HPCL-DOM-14.2 }
+            name: { type: string, example: "14.2 kg Domestic LPG (HPCL)" }
+            qty: { type: integer, example: 1 }
+        status:
+          type: string
+          enum: [placed, assigned, out_for_delivery, delivered, cancelled, returned]
+          example: out_for_delivery
+        placedAt: { type: string, format: date-time, example: "2026-05-23T03:42:00Z" }
+        eta: { type: string, format: date-time, nullable: true }
+
+    TripStop:
+      type: object
+      required: [seq, orderId, customerName, address, distanceKm, status]
+      properties:
+        seq: { type: integer, example: 2, description: "Stop sequence in the day's route" }
+        orderId: { type: string, example: SO-9482 }
+        customerName: { type: string, example: Raj Kumar }
+        sku: { type: string, example: "14.2 kg × 1" }
+        address: { type: string, example: "Banjara · 0.4 km" }
+        distanceKm: { type: number, example: 0.4 }
+        status:
+          type: string
+          enum: [pending, active, done, skipped]
+          example: active
+        etaMin: { type: integer, example: 8, nullable: true }
+
+    PendingAction:
+      type: object
+      required: [id, category, summary, priority, ageMinutes]
+      properties:
+        id: { type: string, example: CT-1882 }
+        category:
+          type: string
+          enum: [mi_empty, mi_full, cash, prior_delivery, unassigned, verification, branch_assign, kyc]
+          example: cash
+        summary: { type: string, example: "Suresh R · ₹4,872 cash transfer (partial)" }
+        priority:
+          type: string
+          enum: [low, med, high, breached]
+          example: high
+        ageMinutes: { type: integer, example: 30 }
+        slaMinutes: { type: integer, example: 60 }
+        action:
+          type: string
+          enum: [approve, route, decide, assign, remind, review]
+          example: approve
